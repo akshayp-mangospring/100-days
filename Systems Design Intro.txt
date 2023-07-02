@@ -1,12 +1,14 @@
 I'm gonna learn Basic Engineering Design Patterns that are used design large scale distributed systems.
 Large Scale means that it's very intensive in Computation or Data.
 
-Large Scale software:
-A hell lot of Data
-The data gets updated very frequently
-It's used by a hell lot of users
-Top notch Performance
-The System doesn't ever go down
+Large Scale software has:
+  A hell lot of Data
+  The data gets updated very frequently
+  It's used by a hell lot of users
+
+Users expect:
+  Top notch Performance
+  The System doesn't ever go down
 
 For example: Google Maps
 
@@ -16,17 +18,40 @@ So, there might be a server in India, one in Japan, one in USA.
 So, requests from India will be catered by Indian Server whereas requests from Japan will be catered by Japanese Server, so that it doesn't have to go to the server across continents in USA. This ensures faster performance for the app.
 Having multiple servers also helps in not crashing the entire system down, so, if the server in Japan crashes then the requests from Japan would be redirected to server in India thus saving the system from shutting down.
 
+Prerequisites of System Design:
+  OOP Principles: Abstraction, Polymorphism, Inheritance, Encapsulation
+  SOLID Principles
+  Design Patterns: Singleton Pattern, Builder Pattern, Factory Pattern
+  Clean Code
+
+Concepts in System Design:
+  Caching
+  CDN
+  Load Balancers
+  Message Queue - Apache Kafka, Rabbit MQ
+  Database Replication
+  Database Sharding
+  AWS Experience is essential
+
+What are design patterns? Explain with an example:
+A software design pattern is a reusable solution to a commonly occuring problem within a system. The problems that occur within a system will be different for different systems. So the design patterns used in different types of systems will automatically be different. There can be multiple design patterns applied within a system. Extracting a common problem and applying a common solution to the problem.
+Example: Suppose Khabib Nurmagomedov Posts something on his Instagram account, then it should be sent as a notification to the millions of his followers.
+So, the expectations from the system should be:
+One piece of content, that's converted into an event and that event is being sent to millions of people. We need to notify them quickly and we also don't want to put on too much load on the existing servers so as to manage all the current incoming requests and serve the future incoming requests as well to avoid crashing of the system due to overload.
+The design pattern to follow for such a pattern is Publisher-Subscriber Model, where Khabib is the Publisher and the millions of his followers are the subscribers who are supposed to receive a notification when Khabib posts something on his profile.
 Main job of engineer:
 Take in Business requirements and convert them into technical solutions to make reliable, scalable and maintainable systems.
 
 Design Patterns in System Design:
-Publisher Subscriber Model
+  Publisher Subscriber Model
 
 System Design of a Live Streaming Application:
 Examples:
   Youtube
   Netflix
   Hotstar
+  Facebook Live
+  Instagram Live
 
 First thing is define the requirements from the user's perspective.
 
