@@ -1,0 +1,28 @@
+Polymorphic Associations:
+Polymorphic Class/Model is a model which can be associated with multiple models.
+So, the main motto of it is that a model can be used generically with multiple other models
+There are only 2 columns that we need to add in it to identify the content of the model
+We need the type and the id to identify it.
+The type actually contains the name of the class which has the association and the id contains the name of the id of the class.
+
+Example:
+```
+class Picture < ActiveRecord::Base
+  belongs_to :imageable, polymorphic: true
+end
+
+class Employee < ActiveRecord::Base
+  has_many :pictures, as: :imageable
+end
+
+class Product < ActiveRecord::Base
+  has_many :pictures, as: :imageable
+end
+```
+
+This means that the picture table is now gonna have two extra columns to identify each picture uniquely apart from the content of the table.
+Column 1 is gonna be `imageable_type` which is gonna be a string and Column 2 is gonna be `imageable_id` which is gonna be an integer.
+`imageable_type` can either contain `Product`/`Employee` in it as it's value.
+`imageable_id` can either contain the product id/employee id in it as it's value.
+Notice that the picture table still has an id of it's own and isn't affected by it.
+So, when we are querying pictures table we need to apply the filter of `imageable_type` and `imageable_id` both, so that we can uniquely get records. Because both `imageable_id` and `imageable_type` is gonna be redundant if we consider only one column for query.
