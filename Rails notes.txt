@@ -26,3 +26,26 @@ Column 1 is gonna be `imageable_type` which is gonna be a string and Column 2 is
 `imageable_id` can either contain the product id/employee id in it as it's value.
 Notice that the picture table still has an id of it's own and isn't affected by it.
 So, when we are querying pictures table we need to apply the filter of `imageable_type` and `imageable_id` both, so that we can uniquely get records. Because both `imageable_id` and `imageable_type` is gonna be redundant if we consider only one column for query.
+Primary Keys and Foreign Keys are not involved in this.
+
+Database Indexing:
+Table index is a different data structure and the actual table is a different data structure. So, they are not the same.
+Table is heavier and the Index is a much lighter data structure. So, it's always much more convenient to go through the index first than the actual heavy table with millions of records.
+Using indexing we can quickly find what we are looking for. It uses B-trees internally. The lookup time is really fast.
+We can apply index on a per column basis on a table.
+Mostly used in ids, Primary keys, Foreign Keys. Also indexes can be applied on per column basis, like integer columns or string columns, but integer columns are the ones which are used the most.
+So, when we search for a record in a table which has index applied on it, we don't go through the millions of records that the table has instead we go through the index which is way way more faster than the actual search of a million records. So, the point is it improvises the searching of records in a table.
+Suppose we apply an index on the id column and query it then it's results would be fetched through the index, but when we query any other column in the table apart from id then an actual search of million records is gonna happen on the table which is called as a Full Table Scan, which is something that's not desirable according to performance metrics. So, when after applying indexes it is much more convenient to query on the columns which have indexes applied on it for faster results.
+
+Now, I just need to know a few things about Indexes:
+How to apply index on a table? => CREATE INDEX employees_name ON employees(name); It takes sometime to create an index because it buils a Binary tree on that column and stores it as a data structure.
+Can we apply multiple indexes on a table? => Yes, one on ID and one on NAME, but only one index can be applied on one column.
+How to identify existing index(es) on a table?
+Can we apply indexing on a combination of columns in a table?
+
+Explain Plan in Databases:
+There are two phases when executing a query when an index is applied on the table:
+  - Planning on how the query is supposed to be executed - It consumes sometime
+  - Actual execution of the query - It consumes more time than the planning time
+
+If we observe Explain query then we get to know that `LIKE` queries are the worst in terms of performance, because it performs Regex matching on each row in the table, which is an expensive operation. But the biggest disadvantage is that indexes are not scanned in such a query, even if an index is applied on the column that we are querying against.
