@@ -1,0 +1,13 @@
+Database Concepts to learn:
+ACID transactions
+Joins
+Grouping
+Aggregation
+Subqueries
+Normalization and it's forms
+Indexing
+Cursors
+Triggers
+Stored Procedures
+Partitioning
+Sharding
