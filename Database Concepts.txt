@@ -1,13 +1,36 @@
-Database Concepts to learn:
-ACID transactions
-Joins
-Grouping
-Aggregation
-Subqueries
-Normalization and it's forms
-Indexing
-Cursors
-Triggers
-Stored Procedures
-Partitioning
-Sharding
+Normalization:
+If data integrity is compromised, then we have bad database design.
+Redundancy shouldn't be allowed. Database should be a single source of truth.
+Normalized data is protected from:
+  - Insertion Anomalies
+  - Updation Anomalies
+  - Deletion Anomalies
+
+Normal Forms in a database are a set of principles to be followed while deisgning a database.
+
+Order of safety in Data:
+- First Normal Form - Least Safe
+- Second Normal Form
+- Third Normal Form
+- Fourth Normal Form
+- Fifth Normal Form - Most Safe
+
+Normmalization is a safety assessment on a DB. Just like we can have safety levels for a bridge, we can have safety assessment for data in DB.
+There's no concept of row ordering in Database queries. So, we need to be as explicit as possible to convey information which is relevant to the database.
+
+The values which goes into a database column should be of a single data type. It shouldn't be a mix of data types.
+Every Table should have a primary key no matter what according to First Normal Form.
+
+First Normal Form Rules:
+- Using Row order to convey information is not permitted.
+- Mixing data types within the same column isn't permitted.
+- Having a table without a Primary Key isn't permitted.
+- Repeating groups are not permitted.
+
+These should be avoided:
+- Deletion Anomaly
+- Updation Anomaly
+- Insertion Anomaly
+
+Third Normal Form - It's very similar to Boyce Codd Normal Form:
+Every Non key attribute in a table should depend on key. the whole key(because a primary key can consist of multiple columns) and nothing but the key.

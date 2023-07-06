@@ -1,0 +1,25 @@
+Database Concepts to learn:
+ACID transactions
+Joins
+Grouping
+Aggregation
+Subqueries
+Normalization and it's forms
+Indexing
+Cursors
+Triggers
+Stored Procedures
+Partitioning
+Sharding
+
+New Concepts to be studied apart from the traditional ones:
+OLAP
+OLTP
+Clustered Indexes
+Non Clustered Indexes
+Collation Sensitivity
+Scalar and Aggregate functions
+Five primary types of Dimensions
+Iconic Model
+Backup procedures you might use to prepare for data loss
+Star and Snowflake schema
