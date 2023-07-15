@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import TodoList from './TodoList';
-import Toast from './Toast';
+import { TODOS_API } from './constants';
+import TodoList from './components/TodoList';
+import Toast from './components/Toast';
 
 function App() {
   const [content, setContent] = useState('');
@@ -13,7 +14,7 @@ function App() {
   const [requestProcessing, setRequestProcessing] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:3000/todos')
+    fetch(TODOS_API)
       .then(r => r.json())
       .then(({ todos: res }) => {
         setTodos(res);
@@ -32,7 +33,7 @@ function App() {
 
   const addTodo = () => {
     setRequestProcessing(true);
-    fetch('http://localhost:3000/create', {
+    fetch(TODOS_API, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",

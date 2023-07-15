@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   get '/test', to: 'todos#test'
 
   get '/todos', to: 'todos#index'
-  post '/create', to: 'todos#create'
+  post '/todos', to: 'todos#create'
+  put '/todos', to: 'todos#edit'
+  delete '/todos', to: 'todos#delete'
 end

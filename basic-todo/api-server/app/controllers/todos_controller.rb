@@ -13,6 +13,14 @@ class TodosController < ApplicationController
     end
   end
 
+  def edit
+    render json: { status: :ok, message: 'Todo Edited' }
+  end
+
+  def delete
+    render json: { status: :ok, message: 'Todo Deleted' }
+  end
+
   def test
     render json: { message: 'Hello, World!' }
   end
