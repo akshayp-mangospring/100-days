@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   root 'todos#test'
 
   get '/test', to: 'todos#test'
+
   get '/todos', to: 'todos#index'
+  post '/create', to: 'todos#create'
 end
