@@ -16,6 +16,10 @@ function TodoListItem({ content, id, todos, setTodos, toastData, setShowToast, s
     }
   }, [isEditMode]);
 
+  const handleKeyDown = ({ keyCode }) => {
+    if (keyCode === 13) editTodo();
+  };
+
   const editTodo = () => {
     fetch(TODOS_API, {
       method: 'PUT',
@@ -31,10 +35,10 @@ function TodoListItem({ content, id, todos, setTodos, toastData, setShowToast, s
         content, id
       } }) => {
         if (status === 'ok') {
-          setTodos(todos.map((todo) => {
-            if (todo.id !== id) return todo;
+          setTodos(todos.map((t) => {
+            if (t.id !== id) return t;
             return {
-              ...todo,
+              ...t,
               content
             }
           }));
@@ -55,8 +59,8 @@ function TodoListItem({ content, id, todos, setTodos, toastData, setShowToast, s
         id,
       }),
     }).then(r => r.json())
-      .then((res) => {
-        setTodos(todos.filter((todo) => todo.id !== id));
+      .then(() => {
+        setTodos(todos.filter(({ id: tId }) => tId !== id));
       });
   };
 
@@ -67,7 +71,14 @@ function TodoListItem({ content, id, todos, setTodos, toastData, setShowToast, s
           isEditMode ?
             (
               <>
-                <input type="text" value={editValue} className="w-100 form-control me-auto" ref={inputRef} onChange={(e) => setEditValue(e.target.value)} />
+                <input
+                  type="text"
+                  ref={inputRef}
+                  className="w-100 form-control me-auto"
+                  value={editValue}
+                  onChange={(e) => setEditValue(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                />
                 <a href={DEAD_LINK} onClick={editTodo} className="d-flex align-items-center text-success ms-3">
                   <Tick />
                 </a>

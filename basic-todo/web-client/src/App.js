@@ -31,6 +31,10 @@ function App() {
     return () => clearTimeout(hideToastTimeout);
   }, [showToast]);
 
+  const handleKeyDown = ({ keyCode }) => {
+    if (keyCode === 13) addTodo();
+  };
+
   const addTodo = () => {
     setRequestProcessing(true);
     fetch(TODOS_API, {
@@ -68,7 +72,14 @@ function App() {
       <div className="container">
         <h1 className="text-center my-3">My Todos</h1>
         <div className="input-group input-group-lg mb-5">
-          <input type="text" className="form-control" placeholder="Add Todo here" value={content} onChange={(e) => setContent(e.target.value)} />
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Add Todo here"
+            value={content}
+            onKeyDown={handleKeyDown}
+            onChange={(e) => setContent(e.target.value)}
+          />
           <button className={`btn btn-primary ${(requestProcessing || !content.length) && 'disabled'}`} type="button" onClick={addTodo}>Add</button>
         </div>
         <TodoList todos={todos} setTodos={setTodos} toastData={toastData} setShowToast={setShowToast} setToastData={setToastData} />
