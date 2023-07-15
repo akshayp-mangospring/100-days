@@ -60,3 +60,20 @@ So the most important thing for such an app is that the content should be seen l
 Convert features or abstract business requirements into data definitions.
   Such as converting a like/comment on a Youtube video into a data definition.
     A like/comment will have an Id, content, created at timestamp, which video was it posted on, part of a thread or not, etc.
+
+Steps to solve System Design problems:
+Define the requirement from the user's perspective
+Chalk out possible flows for the user and the features he might be using in those flows
+Reduce the Features/Abstract Concepts to actual Data Definitions
+Map the definitions into Objects which can then be stored in the DB
+After Data has been defined, we need to define API endpoints to query or read/add/alter/delete data
+
+Engineering Requirements:
+None of the services should fail in case there's an outage.
+The system should be extensible and flexible enough as and when the traffic increases in a time frame or as and when new users get added to the system
+Testing of the System - via Load testing, etc.
+
+What's gRPC?
+It's a protocol like HTTP, FTP.
+
+What's Web RTC?
