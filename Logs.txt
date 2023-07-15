@@ -1,0 +1,18 @@
+15 July 2023:
+Today I added a Todo List App from scratch without any help and I am proud to have done it all by myself.
+Although there are a lot more features I wish to add to the project.
+I did the Front End in React and Back End in Rails, SQLite.
+I'll do the same project later in NodeJS and MongoDB.
+
+The features I'm gonna add to the App are:
+Users & Authentication with JWT
+Blog with Comments
+Replies on the Comments
+Comments must be likeable
+Replies on Comments must be likeable
+Pomodoro Timer
+
+The full view of the App must be a Productivity App:
+Pomodoro
+Todos
+Daily Logger
