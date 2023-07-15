@@ -1,13 +1,22 @@
 import TodoListItem from './TodoListItem';
 
-function TodoList({ todos }) {
+function TodoList({ todos, setTodos, toastData, setShowToast, setToastData }) {
   return (
     <>
       {
         todos.length ? (
           <ul className="list-unstyled row">
             {todos.map(({ content, id }) => (
-              <TodoListItem key={id} content={content} id={id} />
+              <TodoListItem
+                key={id}
+                content={content}
+                id={id}
+                todos={todos}
+                setTodos={setTodos}
+                toastData={toastData}
+                setToastData={setToastData}
+                setShowToast={setShowToast}
+              />
             ))}
           </ul>
         ) : <>

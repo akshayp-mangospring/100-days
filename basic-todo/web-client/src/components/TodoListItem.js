@@ -5,11 +5,10 @@ import Tick from './icons/Tick';
 import Close from './icons/Close';
 import { DEAD_LINK, TODOS_API } from '../constants';
 
-function TodoListItem({ content, id }) {
+function TodoListItem({ content, id, todos, setTodos, toastData, setShowToast, setToastData }) {
   const inputRef = useRef(null);
   const [isEditMode, setIsEditMode] = useState(false);
   const [editValue, setEditValue] = useState(content);
-  const [currentValue, setCurrentValue] = useState(content);
 
   useEffect(() => {
     if (isEditMode) {
@@ -29,10 +28,16 @@ function TodoListItem({ content, id }) {
       }),
     }).then(r => r.json())
       .then(({ status, todo: {
-        content
+        content, id
       } }) => {
         if (status === 'ok') {
-          setCurrentValue(content);
+          setTodos(todos.map((todo) => {
+            if (todo.id !== id) return todo;
+            return {
+              ...todo,
+              content
+            }
+          }));
           setIsEditMode(false);
         } else {
 
@@ -51,7 +56,7 @@ function TodoListItem({ content, id }) {
       }),
     }).then(r => r.json())
       .then((res) => {
-        console.log(res);
+        setTodos(todos.filter((todo) => todo.id !== id));
       });
   };
 
@@ -72,7 +77,7 @@ function TodoListItem({ content, id }) {
               </>
             ) : (
               <>
-                <span className="me-auto">{currentValue}</span>
+                <span className="me-auto">{content}</span>
                 <a href={DEAD_LINK} onClick={() => setIsEditMode(true)} className="d-flex align-items-center text-primary">
                   <Pen />
                 </a>
