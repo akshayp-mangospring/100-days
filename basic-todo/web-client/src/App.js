@@ -71,7 +71,7 @@ function App() {
           <input type="text" className="form-control" placeholder="Add Todo here" value={content} onChange={(e) => setContent(e.target.value)} />
           <button className={`btn btn-primary ${(requestProcessing || !content.length) && 'disabled'}`} type="button" onClick={addTodo}>Add</button>
         </div>
-        <TodoList todos={todos} />
+        <TodoList todos={todos} setTodos={setTodos} toastData={toastData} setShowToast={setShowToast} />
       </div>
       {showToast && <Toast toastData={toastData} setShowToast={setShowToast} />}
     </>

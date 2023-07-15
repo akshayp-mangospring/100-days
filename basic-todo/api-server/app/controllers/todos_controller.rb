@@ -14,11 +14,33 @@ class TodosController < ApplicationController
   end
 
   def edit
-    render json: { status: :ok, message: 'Todo Edited' }
+    @todo = Todo.find(params[:id])
+
+    if @todo.nil?
+      render json: { status: :not_found, message: 'Todo Not found', todo: nil }
+      return
+    end
+
+    if @todo.update(content: params[:content])
+      render json: { status: :ok, message: 'Todo Edited', todo: @todo }
+    else
+      render json: { status: :unprocessable_entity, message: 'There was an error in editing the Todo', todo: nil }
+    end
   end
 
   def delete
-    render json: { status: :ok, message: 'Todo Deleted' }
+    @todo = Todo.find(params[:id])
+
+    if @todo.nil?
+      render json: { status: :not_found, message: 'Todo Not found', todo: nil }
+      return
+    end
+
+    if @todo.destroy
+      render json: { status: :ok, message: 'Todo Deleted', todo: nil }
+    else
+      render json: { status: :unprocessable_entity, message: 'There was an error in editing the Todo', todo: nil }
+    end
   end
 
   def test
