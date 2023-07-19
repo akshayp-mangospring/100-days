@@ -8,11 +8,21 @@ The features I'm gonna add to the App are:
 Users & Authentication with JWT
 Blog with Comments
 Replies on the Comments
+Blog must be likeable
 Comments must be likeable
 Replies on Comments must be likeable
 Pomodoro Timer
 
 The full view of the App must be a Productivity App:
-Pomodoro
+The Motto of the App will be to Write within a set time for stuff which should not require more time.
+Stuff such as your daily log shouldn't require time more than 5 mins.
+If the timer is up then stuff would be Auto Published.
+Max time should be 25 mins for anything.
+Write a Blog article within a Pomodoro timer set, on Pomodoro finish
+Write a Blog article without a Pomodoro timer
 Todos
 Daily Logger
+
+In future:
+Deletion of a Todo should also give an Undo action, but just for 3 seconds, which will give a final call to deletion API.
+A Todo should have notes/desc with rich text support, priority, due date.
