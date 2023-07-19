@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   post '/todos', to: 'todos#create'
   put '/todos', to: 'todos#edit'
   delete '/todos', to: 'todos#delete'
+  put '/todos/:id/done', to: 'todos#done'
 end

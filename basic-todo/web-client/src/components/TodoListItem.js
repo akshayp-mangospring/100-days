@@ -5,7 +5,7 @@ import Tick from './icons/Tick';
 import Close from './icons/Close';
 import { DEAD_LINK, TODOS_API } from '../constants';
 
-function TodoListItem({ content, id, todos, setTodos, toastData, setShowToast, setToastData }) {
+function TodoListItem({ content, done, id, todos, setTodos, toastData, setShowToast, setToastData }) {
   const inputRef = useRef(null);
   const [isEditMode, setIsEditMode] = useState(false);
   const [editValue, setEditValue] = useState(content);
@@ -18,6 +18,32 @@ function TodoListItem({ content, id, todos, setTodos, toastData, setShowToast, s
 
   const handleKeyDown = ({ keyCode }) => {
     if (keyCode === 13) editTodo();
+  };
+
+  const markDone = (e) => {
+    fetch(`${TODOS_API}/${id}/done`, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+        done: e.target.checked,
+      }),
+    }).then(r => r.json())
+      .then(({ status, todo: {
+        done, id
+      } }) => {
+        if (status === 'ok') {
+          setTodos(todos.map((t) => {
+            if (t.id !== id) return t;
+            return {
+              ...t,
+              done
+            }
+          }));
+        }
+      });
   };
 
   const editTodo = () => {
@@ -66,7 +92,7 @@ function TodoListItem({ content, id, todos, setTodos, toastData, setShowToast, s
 
   return (
     <li className="col-sm-6">
-      <div className="d-flex align-items-center border border-light-subtle rounded p-2 mb-1">
+      <div className={`d-flex align-items-center border border-light-subtle rounded p-2 mb-1 ${done && 'text-decoration-line-through'}`}>
         {
           isEditMode ?
             (
@@ -88,10 +114,19 @@ function TodoListItem({ content, id, todos, setTodos, toastData, setShowToast, s
               </>
             ) : (
               <>
+                <div className="form-check">
+                  <input className="form-check-input" type="checkbox" onChange={markDone} value={done} defaultChecked={done} id={`todos[${id}]`} />
+                  <label className="form-check-label" htmlFor={`todos[${id}]`}>
+                  </label>
+                </div>
                 <span className="me-auto">{content}</span>
-                <a href={DEAD_LINK} onClick={() => setIsEditMode(true)} className="d-flex align-items-center text-primary">
-                  <Pen />
-                </a>
+                {
+                  !done && (
+                    <a href={DEAD_LINK} onClick={() => setIsEditMode(true)} className="d-flex align-items-center text-primary">
+                      <Pen />
+                    </a>
+                  )
+                }
                 <a href={DEAD_LINK} onClick={deleteTodo} className="d-flex align-items-center text-danger ms-3">
                   <Trash />
                 </a>

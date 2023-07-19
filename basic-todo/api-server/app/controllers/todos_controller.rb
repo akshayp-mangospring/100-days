@@ -43,6 +43,21 @@ class TodosController < ApplicationController
     end
   end
 
+  def done
+    @todo = Todo.find(params[:id])
+
+    if @todo.nil?
+      render json: { status: :not_found, message: 'Todo Not found', todo: nil }
+      return
+    end
+
+    if @todo.update(done: params[:done])
+      render json: { status: :ok, message: 'Marked Done', todo: @todo }
+    else
+      render json: { status: :unprocessable_entity, message: 'There was an error in marking the Todo as Done', todo: nil }
+    end
+  end
+
   def test
     render json: { message: 'Hello, World!' }
   end

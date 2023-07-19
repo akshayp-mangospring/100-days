@@ -6,10 +6,11 @@ function TodoList({ todos, setTodos, toastData, setShowToast, setToastData }) {
       {
         todos.length ? (
           <ul className="list-unstyled row">
-            {todos.map(({ content, id }) => (
+            {todos.map(({ content, done, id }) => (
               <TodoListItem
                 key={id}
                 content={content}
+                done={done}
                 id={id}
                 todos={todos}
                 setTodos={setTodos}
