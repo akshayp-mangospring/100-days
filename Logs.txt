@@ -12,6 +12,7 @@ Blog must be likeable
 Comments must be likeable
 Replies on Comments must be likeable
 Pomodoro Timer
+Basic text based Chat amongst multiple users
 
 The full view of the App must be a Productivity App:
 The Motto of the App will be to Write within a set time for stuff which should not require more time.
@@ -24,5 +25,12 @@ Todos
 Daily Logger
 
 In future:
-Deletion of a Todo should also give an Undo action, but just for 3 seconds, which will give a final call to deletion API.
-A Todo should have notes/desc with rich text support, priority, due date.
+Deletion of a Todo should also give an Undo action, but just for 3 seconds, which will give a final call to deletion API
+A Todo should have notes/desc with rich text support, priority, due date
+The To Do items in the Todo List must be draggable, the order must be set according to what was set
+
+Technical stuff to do in the near future:
+Connect the App to MySQL
+Add Redux or Context to the App on the Front End
+Handle extra error cases in the App on the Front End as well as back end, such as 404, 500, etc.
+Code Cleanups - The code must be pristine
