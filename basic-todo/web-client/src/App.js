@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { TODOS_API } from './constants';
 import TodoList from './components/TodoList';
 import Toast from './components/Toast';
+import Timer from './components/Timer';
 
 function App() {
   const [content, setContent] = useState('');
@@ -85,6 +86,7 @@ function App() {
         <TodoList todos={todos} setTodos={setTodos} toastData={toastData} setShowToast={setShowToast} setToastData={setToastData} />
       </div>
       {showToast && <Toast toastData={toastData} setShowToast={setShowToast} />}
+      <Timer timeInSec={1500} />
     </>
   );
 }
