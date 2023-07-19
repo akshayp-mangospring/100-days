@@ -1,0 +1,32 @@
+The features I'm gonna add to the App are:
+Users & Authentication with JWT
+Blog with Comments
+Replies on the Comments
+Blog must be likeable
+Comments must be likeable
+Replies on Comments must be likeable
+Pomodoro Timer
+Basic text based 1-0-1 Chat amongst multiple users
+
+The full view of the App must be a Productivity App:
+The Motto of the App will be to Write within a set time for stuff which should not require more time.
+Stuff such as your daily log shouldn't require time more than 5 mins.
+If the timer is up then stuff would be Auto Published.
+Max time should be 25 mins for anything.
+Write a Blog article within a Pomodoro timer set, on Pomodoro finish
+Write a Blog article without a Pomodoro timer
+Todos
+Daily Logger
+
+In future:
+Deletion of a Todo should also give an Undo action, but just for 3 seconds, which will give a final call to deletion API
+A Todo should have notes/desc with rich text support, priority, due date
+The To Do items in the Todo List must be draggable, the order must be set according to what was set
+I'll do the same project later in NodeJS and MongoDB
+
+Technical stuff to do in the near future:
+Connect the App to MySQL
+Add Redux or Context to the App on the Front End
+Handle extra error cases in the App on the Front End as well as back end, such as 404, 500, etc.
+Add validations as well
+Code Cleanups - The code must be pristine
