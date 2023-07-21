@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { convertToMinutesText } from "../utils";
+import { useEffect, useState } from 'react';
+import { convertToMinutesText } from '../utils';
 
 function Timer({ timeInSec }) {
   const [timeLeft, setTimeLeft] = useState(timeInSec);

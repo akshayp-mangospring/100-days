@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { TODOS_API } from './constants';
-import TodoList from './components/TodoList';
-import Toast from './components/Toast';
-import Timer from './components/Timer';
+import { TODOS_API } from '../constants';
+import TodoList from '../components/TodoList';
+import Toast from '../components/Toast';
+import Timer from '../components/Timer';
 
-function App() {
+function Todos() {
   const [content, setContent] = useState('');
   const [todos, setTodos] = useState([]);
   const [toastData, setToastData] = useState({
@@ -91,4 +91,4 @@ function App() {
   );
 }
 
-export default App;
+export default Todos;
