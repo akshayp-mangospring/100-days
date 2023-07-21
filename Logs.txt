@@ -6,3 +6,6 @@ I did the Front End in React and Back End in Rails, SQLite.
 19 July 2023:
 Today I added mark a Todo as done. The API and the Front End for it as well.
 Added a basic Pomodoro Timer on the Front End.
+
+21 July 2023:
+Added a basic React Router with basic Components to support User Login in the future.
