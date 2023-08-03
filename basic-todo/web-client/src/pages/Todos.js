@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { TODOS_API } from '../constants';
+import { ENTER_KEY_CODE, TODOS_API } from '../constants';
+
 import TodoList from '../components/TodoList';
 import Toast from '../components/Toast';
 import Timer from '../components/Timer';
@@ -33,7 +34,7 @@ function Todos() {
   }, [showToast]);
 
   const handleKeyDown = ({ keyCode }) => {
-    if (keyCode === 13) addTodo();
+    if (keyCode === ENTER_KEY_CODE) addTodo();
   };
 
   const addTodo = () => {

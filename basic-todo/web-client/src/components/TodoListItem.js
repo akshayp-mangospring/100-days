@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import { DEAD_LINK, ENTER_KEY_CODE, TODOS_API } from '../constants';
+
 import Pen from './icons/Pen';
 import Trash from './icons/Trash';
 import Tick from './icons/Tick';
 import Close from './icons/Close';
-import { DEAD_LINK, TODOS_API } from '../constants';
 
 function TodoListItem({ content, done, id, todos, setTodos, toastData, setShowToast, setToastData }) {
   const inputRef = useRef(null);
@@ -17,7 +18,7 @@ function TodoListItem({ content, done, id, todos, setTodos, toastData, setShowTo
   }, [isEditMode]);
 
   const handleKeyDown = ({ keyCode }) => {
-    if (keyCode === 13) editTodo();
+    if (keyCode === ENTER_KEY_CODE) editTodo();
   };
 
   const markDone = (e) => {
