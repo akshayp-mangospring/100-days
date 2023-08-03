@@ -8,3 +8,6 @@ export const convertToMinutesText = (timeInSec) => {
 
   return `${padZeros(minutes)}:${(padZeros(seconds))}`;
 };
+
+
+export const alterObjProp = (o, k, v) => ({ ...o, [k]: v });
