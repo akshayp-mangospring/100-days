@@ -25,7 +25,7 @@ The To Do items in the Todo List must be draggable, the order must be set accord
 I'll do the same project later in NodeJS and MongoDB
 
 Technical stuff to do in the near future:
-Connect the App to MySQL
+Connect the App to MySQL - Done
 Add Redux or Context to the App on the Front End
 Dockerize the App for deployment convenience
 Handle extra error cases in the App on the Front End as well as back end, such as 404, 500, etc.
