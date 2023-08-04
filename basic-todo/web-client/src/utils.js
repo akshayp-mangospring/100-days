@@ -10,4 +10,4 @@ export const convertToMinutesText = (timeInSec) => {
 };
 
 
-export const alterObjProp = (o, k, v) => ({ ...o, [k]: v });
+export const updateObjProp = (o, k, v) => ({ ...o, [k]: v });
