@@ -8,7 +8,7 @@ module JsonWebToken
     JWT.encode(payload, SECRET_KEY)
   end
 
-  def jwt_decode()
+  def jwt_decode(token)
     JWT.decode(token, SECRET_KEY)
   end
 end

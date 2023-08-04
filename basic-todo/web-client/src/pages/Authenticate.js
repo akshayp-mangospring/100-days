@@ -17,7 +17,7 @@ function Authenticate() {
   const [signupInfo, setSignupInfo] = useState({
     username: '',
     password: '',
-    email_address: ''
+    email: ''
   });
 
   const updateLoginForm = (k, v) => setLoginInfo(updateObjProp(loginInfo, k, v));
@@ -33,8 +33,8 @@ function Authenticate() {
     }
 
     if (isSignupTab()) {
-      const { username, password, email_address } = signupInfo;
-      if ((username.length || email_address.length) && password.length) return true;
+      const { username, password, email } = signupInfo;
+      if ((username.length || email.length) && password.length) return true;
       return false;
     }
 
@@ -52,7 +52,7 @@ function Authenticate() {
     if (!isFormValid()) return;
 
     const entryUrl = isLoginTab() ? LOGIN_API : SIGNUP_API;
-    const content = isLoginTab() ? loginInfo : signupInfo;
+    const userInfo = isLoginTab() ? loginInfo : signupInfo;
 
     setRequestProcessing(true);
 
@@ -61,11 +61,13 @@ function Authenticate() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(content),
+      body: JSON.stringify({
+        user: userInfo,
+      }),
     }).then(r => r.json())
       .then(({ status }) => {
         setRequestProcessing(false);
-        if (status === 200) {
+        if (status === 'ok') {
           navigate('/todos');
         } else {
           alert("There's an error");
@@ -84,13 +86,13 @@ function Authenticate() {
           <div className="d-flex mb-3">
             <span
               role="button"
-              tabindex="0"
+              tabIndex="0"
               className={`w-50 py-3 text-center ${isLoginTab() ? activeTabClasses : ''}`}
               onClick={() => { setActiveTab(LOGIN) }}
             >Login</span>
             <span
               role="button"
-              tabindex="0"
+              tabIndex="0"
               className={`w-50 py-3 text-center ${isSignupTab() ? activeTabClasses : ''}`}
               onClick={() => { setActiveTab(SIGNUP) }}
             >Sign Up</span>
@@ -135,7 +137,7 @@ function Authenticate() {
                 <input
                   type="email"
                   className="form-control"
-                  onChange={(e) => updateSignupForm('email_address', e.target.value)}
+                  onChange={(e) => updateSignupForm('email', e.target.value)}
                   id="signup-email"
                 />
               </div>

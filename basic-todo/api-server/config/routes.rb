@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   get '/test', to: 'todos#test'
 
+  post '/login', to: 'authentication#login'
+  post '/signup', to: 'authentication#signup'
+
   get '/todos', to: 'todos#index'
   post '/todos', to: 'todos#create'
   put '/todos', to: 'todos#edit'
