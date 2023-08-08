@@ -12,3 +12,7 @@ Added a basic React Router with basic Components to support User Login in the fu
 
 3 August 2023:
 Added MySQL as database for Basic Todos App. Initially the DB was SQLite, but I changed it to MySQL now, so that I can have hands on experience on MySQL itself.
+
+4 August 2023:
+Added Basic Sign Up and Login API and Users Model.
+Added base for JWT as well, but not fully implemented.
