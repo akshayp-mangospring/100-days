@@ -16,3 +16,9 @@ Added MySQL as database for Basic Todos App. Initially the DB was SQLite, but I 
 4 August 2023:
 Added Basic Sign Up and Login API and Users Model.
 Added base for JWT as well, but not fully implemented.
+
+8 August 2023:
+Studied about token based authentication.
+- Access token
+- Refresh token
+Also, chalked out flows of Login, Signup and subsequent requests in token based authentication.

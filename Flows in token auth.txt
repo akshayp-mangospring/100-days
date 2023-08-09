@@ -1,0 +1,26 @@
+Sign Up Flow:
+  Provide Sign Up Info.
+  Controller checks validations of blank and formats.
+  User is created with the Sign Up info provided if the info is valid.
+  JWTs(Access Token and Refresh Token) are generated and are sent back to the User, along with User info in it.
+  User then stores that JWT on the client side.
+  Sends the Tokens received from the server in the Authorization Header in the subsequent requests.
+  He is now eligible for log out.
+  On Log out the user can remove the tokens stored on the client.
+
+Login Flow:
+  Provide the Login Info.
+  Controller checks whether the info provided has correct creds like Username and Password
+  JWTs(Access Token and Refresh Token) are generated and are sent back to the User, along with User info in it.
+  User then stores that JWT on the client side.
+  Sends the Tokens received from the server in the Authorization Header in the subsequent requests.
+  He is now eligible for log out.
+  On Log out the user can remove the tokens stored on the client.
+
+Subsequent Requests after login Flow:
+  User sends the Tokens received from the server in the Authorization Header in all the requests if the token is existing.
+  Each request is then checked in the Application Controller or Middleware for the existence of a valid token:
+  If Valid
+    Request is forwarded to the intended controller for further processing
+  Else
+    Return the request with a 401(Unauthorized) status code

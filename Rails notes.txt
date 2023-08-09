@@ -49,3 +49,12 @@ There are two phases when executing a query when an index is applied on the tabl
   - Actual execution of the query - It consumes more time than the planning time
 
 If we observe Explain query then we get to know that `LIKE` queries are the worst in terms of performance, because it performs Regex matching on each row in the table, which is an expensive operation. But the biggest disadvantage is that indexes are not scanned in such a query, even if an index is applied on the column that we are querying against.
+
+Token based Authentication:
+In token based authentication we don't maintain whether the user is logged into the system on the Server side.
+The Auth token is itself a self contained block which helps to identify whether the user is valid or not.
+If the Auth Token is expired, we need to use the Refresh token to generate a new pair of Access & Refresh Tokens, those tokens are then used in further requests.
+Refresh Tokens must have a separate Secret Key than Access tokens.
+Use `HttpOnly` Cookies for storing the Auth and Refresh tokens.
+Refresh Tokens Generation API must be different than Access token generation API.
+The Refresh Token must NOT be used to access our Regular APIs, only Access Tokens must be used to access our regular APIs.
