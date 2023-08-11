@@ -22,3 +22,9 @@ Studied about token based authentication.
 - Access token
 - Refresh token
 Also, chalked out flows of Login, Signup and subsequent requests in token based authentication.
+
+10 August 2023:
+Implemented functional JWTs
+Added Authentication, Authorization in it
+Added User based Todos
+Integrated the Login and Signup, CRUD of Todos on Front End

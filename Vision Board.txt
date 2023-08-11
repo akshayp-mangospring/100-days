@@ -1,12 +1,13 @@
 The features I'm gonna add to the App are:
-Users & Authentication with JWT
+Users & Authentication with JWT - Crude Done
 Blog with Comments
 Replies on the Comments
 Blog must be likeable
 Comments must be likeable
 Replies on Comments must be likeable
 Pomodoro Timer
-Basic text based 1-0-1 Chat amongst multiple users
+Blogs from any user must be searchable to all users.
+Basic text based 1-0-1 Chat amongst multiple users.
 
 The full view of the App must be a Productivity App:
 The Motto of the App will be to Write within a set time for stuff which should not require more time.
