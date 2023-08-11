@@ -1,10 +1,10 @@
 class TodosController < ApplicationController
   def index
-    render json: { todos: Todo.all.reverse }
+    render json: { todos: @current_user.todos.reverse, status: :ok, user: @current_user.email }
   end
 
   def create
-    @todo = Todo.new(content: params[:content])
+    @todo = Todo.new(content: params[:content], user_id: @current_user.id)
 
     if @todo.save
       render json: { status: :ok, message: 'Todo saved successfully', todo: @todo }

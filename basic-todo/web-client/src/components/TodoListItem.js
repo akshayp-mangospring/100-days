@@ -26,6 +26,7 @@ function TodoListItem({ content, done, id, todos, setTodos, toastData, setShowTo
       method: 'PUT',
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem('auth_token')}`
       },
       body: JSON.stringify({
         id,
@@ -52,6 +53,7 @@ function TodoListItem({ content, done, id, todos, setTodos, toastData, setShowTo
       method: 'PUT',
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem('auth_token')}`
       },
       body: JSON.stringify({
         id,
@@ -81,6 +83,7 @@ function TodoListItem({ content, done, id, todos, setTodos, toastData, setShowTo
       method: 'DELETE',
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem('auth_token')}`
       },
       body: JSON.stringify({
         id,

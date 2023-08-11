@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
 import { ENTER_KEY_CODE, TODOS_API } from '../constants';
 
 import TodoList from '../components/TodoList';
@@ -6,6 +8,8 @@ import Toast from '../components/Toast';
 import Timer from '../components/Timer';
 
 function Todos() {
+  const navigate = useNavigate();
+
   const [content, setContent] = useState('');
   const [todos, setTodos] = useState([]);
   const [toastData, setToastData] = useState({
@@ -16,12 +20,23 @@ function Todos() {
   const [requestProcessing, setRequestProcessing] = useState(false);
 
   useEffect(() => {
-    fetch(TODOS_API)
+    fetch(TODOS_API, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem('auth_token')}`
+      },
+    })
       .then(r => r.json())
-      .then(({ todos: res }) => {
-        setTodos(res);
+      .then(({ status, todos: res }) => {
+        if (status === 'ok') {
+          setTodos(res);
+        } else {
+          navigate('/');
+        }
+      }).catch((e) => {
+        navigate('/');
       });
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     const hideToastTimeout = setTimeout(() => {
@@ -37,12 +52,18 @@ function Todos() {
     if (keyCode === ENTER_KEY_CODE) addTodo();
   };
 
+  const logMeOut = () => {
+    localStorage.removeItem('auth_token');
+    navigate('/');
+  }
+
   const addTodo = () => {
     setRequestProcessing(true);
     fetch(TODOS_API, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem('auth_token')}`
       },
       body: JSON.stringify({
         content,
@@ -85,9 +106,10 @@ function Todos() {
           <button className={`btn btn-primary ${(requestProcessing || !content.length) && 'disabled'}`} type="button" onClick={addTodo}>Add</button>
         </div>
         <TodoList todos={todos} setTodos={setTodos} toastData={toastData} setShowToast={setShowToast} setToastData={setToastData} />
+        <button className="btn btn-primary position-fixed top-0 end-0" type="button" onClick={logMeOut}>Log Out</button>
       </div>
       {showToast && <Toast toastData={toastData} setShowToast={setShowToast} />}
-      <Timer timeInSec={1500} />
+      {/* <Timer timeInSec={1500} /> */}
     </>
   );
 }

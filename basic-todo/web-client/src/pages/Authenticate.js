@@ -53,21 +53,27 @@ function Authenticate() {
 
     const entryUrl = isLoginTab() ? LOGIN_API : SIGNUP_API;
     const userInfo = isLoginTab() ? loginInfo : signupInfo;
+    const headers = isLoginTab() ? {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem('auth_token')}`,
+    } : {
+      "Content-Type": "application/json",
+    }
 
     setRequestProcessing(true);
 
     fetch(entryUrl, {
       method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers,
       body: JSON.stringify({
         user: userInfo,
       }),
     }).then(r => r.json())
-      .then(({ status }) => {
+      .then(({ status, auth_token }) => {
         setRequestProcessing(false);
+
         if (status === 'ok') {
+          localStorage.setItem('auth_token', auth_token);
           navigate('/todos');
         } else {
           alert("There's an error");
