@@ -1,0 +1,28 @@
+It's important to know when to use NoSQL and when not to use NoSQL.
+
+YouTube, Instagram, StackOverflow, WhatsApp doesn't use NoSQL databases.
+
+NoSQL is used in analytics, but all the core functionalities of massive apps work on RDBMS. So, it's not a point to ignore RDBMS. NoSQL isn't the holy grail of databases.
+RDBMS still is very much relevant today and is not gonna be replaced anytime soon.
+
+Advantages of NoSQL:
+The insert is in one query itself and retrieval is without Joins.
+Since data about a user is stored in just one blob, so it's easier to insert and retrieve.
+The Schema is flexible, in SQL we have many situations where a column which has a very small data and is empty/NULL is in many of the rows in the table, so here the schema flexibility is the game changer.
+Data is stored in the JSON like document.
+We have to think about backward compatibility in cases of SQL and in NoSQL it doesn't matter if the new data is non existent in the previous entires.
+Users for NoSQL databases expect to have a lot of scale. So, for it they horizontally partition this data.
+Horizontal partitioning requires Availability over Consistency(CAP Theorem).
+NoSQL databases are used for finding metrics and getting intelligent data. It's Built for Metrics.
+
+Disadvantages of NoSQL:
+Updates are not very efficient in it. Because an Update = Delete + Insert.
+Data is not consistent. SQL solves consistency via ACID properties, but they are non existent in NoSQL. Due to this, FINANCIAL systems NEVER USE NOSQL for their core functionalities.
+Reads in NoSQL are more expensive than SQL.
+Relations in NoSQL are not implicit. They are tough to think about, because there's no instinctive way to map relations between multiple entities. So, JOINS IN NoSQL are HARD. SQL databases are built for Joins instead.
+Redundancy and Aggregation is inherent to NoSQL databases.
+
+When to use NoSQL?
+When we need to keep data in blocks and when we need to make a lot of Write operations and few Update operations and Very Few to No Joins.
+
+What is Database Sharding?
