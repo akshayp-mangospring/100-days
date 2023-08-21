@@ -1,6 +1,6 @@
 An Article:
-- It must belong to a user.
-- It has title, text description.
+- It must belong to a user - Done
+- It has title, text description - Done
 - It must be likeable.
 - It must be commentable.
 - It's comments must be likeable.
@@ -9,5 +9,5 @@ An Article:
 
 Start thinking about the Models and the Database Schema to achieve it.
 
-Add a Route and a controller for listig all the articles of a user.
-CRUD for an article.
+Add a Route and a controller for listig all the articles of a user - Done
+CRUD for an article - Done

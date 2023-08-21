@@ -34,3 +34,8 @@ Create the Todo App with Users in NodeJS and MySQL
 - Major shift in psyche, now, I'm not very much fearful of implementing Back End Projects in multiple languages.
 - Now, I'm planning to take on large scale projects in Back End by myself. Like a Railway Booking or E-commerce App.
 - I'm also ready to set my sights back on DSA.
+
+21 August 2023:
+Added support for User based Articles on the Back End
+Code cleanups - Used `before_action` filter effectively and thus reduced code repetition
+Also checked permissions while performing actions on any Article
