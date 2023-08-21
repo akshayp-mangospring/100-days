@@ -6,4 +6,5 @@ class User < ApplicationRecord
   validates :password, presence: true
 
   has_many :todos
+  has_many :articles
 end
