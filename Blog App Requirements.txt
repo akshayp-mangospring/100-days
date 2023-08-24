@@ -11,3 +11,7 @@ Start thinking about the Models and the Database Schema to achieve it.
 
 Add a Route and a controller for listig all the articles of a user - Done
 CRUD for an article - Done
+Integrate CRUD of Blogs on the Front End - Done
+Create a Polymorphic model for Comments and Replies
+Create a Polymorphic model for Likes
+Add Protected Routes on the Front End

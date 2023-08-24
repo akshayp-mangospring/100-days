@@ -9,10 +9,11 @@ function Article() {
   const { articleId } = useParams();
 
   const [article, setArticle] = useState(null);
-  const [hasEditRights, setHasEditRights] = useState(false);
+  const [hasEditRights, setHasEditRights] = useState(false)
+  const articleActionUrl = `${BLOGS_API}/${articleId}`;
 
   useEffect(() => {
-    fetch(`${BLOGS_API}/${articleId}`, {
+    fetch(articleActionUrl, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${localStorage.getItem('auth_token')}`
@@ -29,7 +30,27 @@ function Article() {
       }).catch((e) => {
         navigate('/');
       });
-  }, [navigate, articleId]);
+  }, [navigate, articleActionUrl]);
+
+  const deleteArticle = () => {
+    fetch(articleActionUrl, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem('auth_token')}`
+      },
+    })
+      .then(r => r.json())
+      .then(({ status, article: res, has_edit_rights }) => {
+        if (status === 'ok') {
+          navigate('/articles');
+        } else {
+          navigate('/');
+        }
+      }).catch((e) => {
+        navigate('/');
+      });
+  }
 
   if (!article) return <OverlayLoader />;
 
@@ -41,7 +62,7 @@ function Article() {
           hasEditRights && (
             <div>
               <NavLink to={`/articles/${articleId}/edit`} className="btn btn-primary">Edit</NavLink>
-              <button className="btn btn-danger mx-2" type="button">Delete</button>
+              <button className="btn btn-danger mx-2" type="button" onClick={deleteArticle}>Delete</button>
             </div>
           )
         }

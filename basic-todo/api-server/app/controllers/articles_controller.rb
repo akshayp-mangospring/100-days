@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :destroy]
-  before_action :check_permission, only: [:edit, :destroy]
+  before_action :set_article, only: [:show, :edit, :delete]
+  before_action :check_permission, only: [:edit, :delete]
 
   def index
     render json: { articles: Article.all.reverse, status: :ok }
@@ -11,17 +11,17 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(title: params[:title], content: params[:content], user_id: @current_user.id)
+    @article = Article.new(title: params[:article][:title], content: params[:article][:content], user_id: @current_user.id)
 
     if @article.save
-      render json: { status: :ok, message: 'Article saved successfully', todo: @article }
+      render json: { status: :ok, message: 'Article saved successfully', article: @article }
     else
       render json: { status: :unprocessable_entity, message: 'There was an error saving the Article', article: nil }
     end
   end
 
   def edit
-    if @article.update_all(title: params[:title], content: params[:content])
+    if @article.update(title: params[:article][:title], content: params[:article][:content])
       render json: { status: :ok, message: 'Article Edited', article: @article }
     else
       render json: { status: :unprocessable_entity, message: 'There was an error in editing the Article', article: nil }
