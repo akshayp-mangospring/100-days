@@ -9,6 +9,7 @@ function Article() {
   const { articleId } = useParams();
 
   const [article, setArticle] = useState(null);
+  const [author, setAuthor] = useState('');
   const [hasEditRights, setHasEditRights] = useState(false)
   const articleActionUrl = `${BLOGS_API}/${articleId}`;
 
@@ -20,9 +21,10 @@ function Article() {
       },
     })
       .then(r => r.json())
-      .then(({ status, article: res, has_edit_rights }) => {
+      .then(({ status, article: res, has_edit_rights, author }) => {
         if (status === 'ok') {
           setArticle(res);
+          setAuthor(author);
           setHasEditRights(has_edit_rights);
         } else {
           navigate('/');
@@ -56,7 +58,7 @@ function Article() {
 
   return (
     <div className="container">
-      <div className="d-flex justify-content-between align-items-center border-bottom pb-3 my-3">
+      <div className="d-flex justify-content-between align-items-center my-3">
         <h1 className="my-0">{article.title}</h1>
         {
           hasEditRights && (
@@ -66,6 +68,11 @@ function Article() {
             </div>
           )
         }
+      </div>
+      <div className="border-bottom pb-3 my-3">
+        <span className="me-2">
+          By: <span className="fw-medium">{author.username}</span>
+        </span>
       </div>
       <p>{article.content}</p>
     </div>

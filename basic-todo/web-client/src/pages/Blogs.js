@@ -37,14 +37,17 @@ function Blog() {
       {
         articles.length ? (
           <ul className="list-unstyled">
-            {articles.map(({ id, title, created_at }) => {
+            {articles.map(({ article: { id, title, created_at }, author: { username } }) => {
               return (
                 <li className="pb-4 mb-3 border-bottom" key={id}>
                   <NavLink to={`/articles/${id}`} className="d-block fs-2 mb-2 fw-bold">{title}</NavLink>
                   <div className="d-flex align-items-center">
-                    <span className="me-2">Published: {convertToReadableDate(created_at)}</span>
-                    <CommentIcon />
-                    <span className="mx-2">30 Comments</span>
+                    <span className="me-3">By: <span className="fw-medium">{username}</span></span>
+                    <span className="mx-3">Published: {convertToReadableDate(created_at)}</span>
+                    <span className="d-flex align-items-center mx-3">
+                      <CommentIcon />
+                      <span className="ms-1">30 Comments</span>
+                    </span>
                   </div>
                 </li>
               )

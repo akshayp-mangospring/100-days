@@ -3,11 +3,20 @@ class ArticlesController < ApplicationController
   before_action :check_permission, only: [:edit, :delete]
 
   def index
-    render json: { articles: Article.all.reverse, status: :ok }
+    articles = Article.all.reverse.map { |a|
+      # Need to find a better way to achieve this
+      # Seems like a very Hacky Way
+      article = { article: a }
+      author = { author: a.user.attributes.slice('id', 'email', 'username') }
+
+      article.merge(author)
+    }
+
+    render json: { articles: articles, status: :ok }
   end
 
   def show
-    render json: { article: @article, has_edit_rights: has_permission?, status: :ok }
+    render json: { article: @article, author: @article.user.attributes.slice('id', 'email', 'username'), has_edit_rights: has_permission?, status: :ok }
   end
 
   def create

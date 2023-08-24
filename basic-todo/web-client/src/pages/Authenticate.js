@@ -69,11 +69,12 @@ function Authenticate() {
         user: userInfo,
       }),
     }).then(r => r.json())
-      .then(({ status, auth_token }) => {
+      .then(({ status, auth_token, user }) => {
         setRequestProcessing(false);
 
         if (status === 'ok') {
           localStorage.setItem('auth_token', auth_token);
+          localStorage.setItem('current_user', JSON.stringify(user));
           navigate('/articles');
         } else {
           alert("There's an error");

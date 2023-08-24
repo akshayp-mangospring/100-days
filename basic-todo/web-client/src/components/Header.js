@@ -6,6 +6,7 @@ function Header() {
 
   const logMeOut = () => {
     localStorage.removeItem('auth_token');
+    localStorage.removeItem('current_user');
     navigate('/');
   }
 
@@ -30,13 +31,18 @@ function Header() {
             </li>
           </ul>
         </div>
-        <a
-          className="nav-link text-white"
-          href={DEAD_LINK}
-          onClick={logMeOut}
-        >
-          Log Out
-        </a>
+        <div className="d-flex">
+          <span className="nav-link fw-bold text-white">
+            {JSON.parse(localStorage.getItem('current_user')).username}
+          </span>
+          <a
+            className="nav-link text-white ms-3"
+            href={DEAD_LINK}
+            onClick={logMeOut}
+          >
+            Log Out
+          </a>
+        </div>
       </div>
     </nav>
   );

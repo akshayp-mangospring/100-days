@@ -6,7 +6,7 @@ class AuthenticationController < ApplicationController
 
     if @user&.authenticate(params[:user][:password])
       token = jwt_encode(user_id: @user.id)
-      render json: { auth_token: token, status: :ok }
+      render json: { auth_token: token, user: @user.attributes.slice('id', 'email', 'username'), status: :ok }
     else
       render json: { error: 'Unauthorized', status: :unauthorized }
     end
@@ -16,7 +16,7 @@ class AuthenticationController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render json: { auth_token: jwt_encode({ user_id: @user.id }), status: :ok }
+      render json: { auth_token: jwt_encode({ user_id: @user.id }), user: @user.attributes.slice('id', 'email', 'username'), status: :ok }
     else
       render json: { error: 'Unable to create user', status: :unprocessable_entity }
     end
