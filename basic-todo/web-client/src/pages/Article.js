@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { BLOGS_API } from '../constants';
 
 import OverlayLoader from '../components/OverlayLoader';
 
 function Article() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const articleId = location.pathname.split('/').pop();
+  const { articleId } = useParams();
 
   const [article, setArticle] = useState(null);
   const [hasEditRights, setHasEditRights] = useState(false);
