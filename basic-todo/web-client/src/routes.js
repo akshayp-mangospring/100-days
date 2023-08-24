@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Todos from './pages/Todos';
 import Blogs from './pages/Blogs';
 import Article from './pages/Article';
+import EditArticle from './pages/EditArticle';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,14 @@ const router = createBrowserRouter([
     {
       path: ':articleId',
       element: <Article />
+    },
+    {
+      path: 'new',
+      element: <EditArticle />
+    },
+    {
+      path: ':articleId/edit',
+      element: <EditArticle />
     }]
   },
 ]);

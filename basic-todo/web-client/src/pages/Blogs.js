@@ -30,9 +30,9 @@ function Blog() {
 
   return (
     <div className="container">
-      <div className="d-flex justify-content-between border-bottom pb-3 my-3">
+      <div className="d-flex justify-content-between align-items-center border-bottom pb-3 my-3">
         <h1 className="my-0">Latest Blogs</h1>
-        <button className="btn btn-primary" type="button">New Article</button>
+        <NavLink to='/articles/new' className="btn btn-primary">New Article</NavLink>
       </div>
       {
         articles.length ? (
