@@ -74,7 +74,7 @@ function Authenticate() {
 
         if (status === 'ok') {
           localStorage.setItem('auth_token', auth_token);
-          navigate('/todos');
+          navigate('/blogs');
         } else {
           alert("There's an error");
         }

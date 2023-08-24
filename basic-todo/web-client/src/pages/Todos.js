@@ -52,11 +52,6 @@ function Todos() {
     if (keyCode === ENTER_KEY_CODE) addTodo();
   };
 
-  const logMeOut = () => {
-    localStorage.removeItem('auth_token');
-    navigate('/');
-  }
-
   const addTodo = () => {
     setRequestProcessing(true);
     fetch(TODOS_API, {
@@ -106,7 +101,6 @@ function Todos() {
           <button className={`btn btn-primary ${(requestProcessing || !content.length) && 'disabled'}`} type="button" onClick={addTodo}>Add</button>
         </div>
         <TodoList todos={todos} setTodos={setTodos} toastData={toastData} setShowToast={setShowToast} setToastData={setToastData} />
-        <button className="btn btn-primary position-fixed top-0 end-0" type="button" onClick={logMeOut}>Log Out</button>
       </div>
       {showToast && <Toast toastData={toastData} setShowToast={setShowToast} />}
       {/* <Timer timeInSec={1500} /> */}
