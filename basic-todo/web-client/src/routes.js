@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Outlet } from 'react-router-dom';
 
 import Authenticate from './pages/Authenticate';
 import Header from './components/Header';
@@ -15,22 +15,27 @@ const router = createBrowserRouter([
     path: '/todos',
     element: <>
       <Header />
-      <Todos />
+      <Outlet />
     </>,
+    children: [{
+      path: '',
+      element: <Todos />,
+    }]
   },
   {
-    path: '/blogs',
+    path: '/articles',
     element: <>
       <Header />
-      <Blogs />
-    </>
-  },
-  {
-    path: '/blogs/:articleId',
-    element: <>
-      <Header />
-      <Article />
-    </>
+      <Outlet />
+    </>,
+    children: [{
+      path: '',
+      element: <Blogs />,
+    },
+    {
+      path: ':articleId',
+      element: <Article />
+    }]
   },
 ]);
 

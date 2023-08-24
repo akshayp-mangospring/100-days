@@ -5,6 +5,7 @@ import { BLOGS_API } from '../constants';
 function Article() {
   const navigate = useNavigate();
   const location = useLocation();
+
   const [article, setArticle] = useState('');
   const [hasEditRights, setHasEditRights] = useState(false);
 
@@ -26,11 +27,11 @@ function Article() {
       }).catch((e) => {
         navigate('/');
       });
-  }, [navigate]);
+  }, [navigate, location]);
 
   return (
     <div className="container">
-      <div className="d-flex justify-content-between border-bottom pb-3 my-3">
+      <div className="d-flex justify-content-between align-items-center border-bottom pb-3 my-3">
         <h1 className="my-0">{article.title}</h1>
         {
           hasEditRights && <button className="btn btn-primary" type="button">Edit Article</button>

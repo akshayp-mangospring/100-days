@@ -40,7 +40,7 @@ function Blog() {
             {articles.map(({ id, title, created_at }) => {
               return (
                 <li key={id}>
-                  <NavLink to={`/blogs/${id}`} className="d-block fs-2 mb-2 fw-bold">{title}</NavLink>
+                  <NavLink to={`/articles/${id}`} className="d-block fs-2 mb-2 fw-bold">{title}</NavLink>
                   <div className="d-flex align-items-center">
                     <span className="me-2">Published: {convertToReadableDate(created_at)}</span>
                     <CommentIcon />

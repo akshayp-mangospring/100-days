@@ -1,4 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import { DEAD_LINK } from '../constants';
 
 function Header() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ function Header() {
     <nav className="navbar navbar-dark bg-primary navbar-expand-lg sticky-top">
       <div className="container-fluid justify-content-start w-100">
         <NavLink
-          to="/blogs"
+          to="/articles"
           className="navbar-brand"
         >
           Blogs
@@ -31,7 +32,7 @@ function Header() {
         </div>
         <a
           className="nav-link text-white"
-          href="javascript: void(0);"
+          href={DEAD_LINK}
           onClick={logMeOut}
         >
           Log Out
