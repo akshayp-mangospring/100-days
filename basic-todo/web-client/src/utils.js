@@ -9,5 +9,13 @@ export const convertToMinutesText = (timeInSec) => {
   return `${padZeros(minutes)}:${(padZeros(seconds))}`;
 };
 
-
 export const updateObjProp = (o, k, v) => ({ ...o, [k]: v });
+
+export const convertToReadableDate = (dateStr) => {
+  const date = new Date(dateStr);
+  const day = date.getDate();
+  const month = date.toLocaleString('default', { month: 'short' });
+  const year = date.getFullYear();
+
+  return `${day} ${month}, ${year}`;
+};

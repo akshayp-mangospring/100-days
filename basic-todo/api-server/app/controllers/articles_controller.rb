@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :check_permission, only: [:edit, :destroy]
 
   def index
-    render json: { articles: @current_user.articles.reverse, status: :ok }
+    render json: { articles: Article.all.reverse, status: :ok }
   end
 
   def show
