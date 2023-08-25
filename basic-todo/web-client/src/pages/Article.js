@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { BLOGS_API, COMMENTS_API, DEAD_LINK } from '../constants';
+import { BLOGS_API, COMMENTS_API, DEAD_LINK, ENTER_KEY_CODE } from '../constants';
 
 import Pen from '../components/icons/Pen';
 import Trash from '../components/icons/Trash';
@@ -39,6 +39,10 @@ function Article() {
         navigate('/');
       });
   }, [navigate, articleActionUrl]);
+
+  const handleKeyDown = ({ keyCode }) => {
+    if (keyCode === ENTER_KEY_CODE) addComment();
+  };
 
   const deleteArticle = () => {
     fetch(articleActionUrl, {
@@ -127,6 +131,7 @@ function Article() {
           className="form-control"
           placeholder="Add your comment here..."
           value={myComment}
+          onKeyDown={handleKeyDown}
           onChange={(e) => setMyComment(e.target.value)}
         />
         <button
