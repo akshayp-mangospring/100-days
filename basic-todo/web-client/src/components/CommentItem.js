@@ -6,8 +6,8 @@ import Trash from './icons/Trash';
 import Tick from './icons/Tick';
 import Close from './icons/Close';
 
-function Comment({ comment, author, hasEditRights, article, setComments, comments }) {
-  const articleId = article.id;
+function Comment({ comment, author, hasEditRights, embeddedParent, setComments, comments }) {
+  const parentId = embeddedParent.id;
   const commentId = comment.id;
   const inputRef = useRef(null);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -24,7 +24,7 @@ function Comment({ comment, author, hasEditRights, article, setComments, comment
   };
 
   const deleteComment = () => {
-    fetch(COMMENTS_API(articleId), {
+    fetch(COMMENTS_API(parentId), {
       method: 'DELETE',
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ function Comment({ comment, author, hasEditRights, article, setComments, comment
   };
 
   const editComment = () => {
-    fetch(COMMENTS_API(articleId), {
+    fetch(COMMENTS_API(parentId), {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json",

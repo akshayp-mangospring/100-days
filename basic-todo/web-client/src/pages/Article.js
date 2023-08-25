@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { BLOGS_API, COMMENTS_API, ENTER_KEY_CODE } from '../constants';
+import { BLOGS_API } from '../constants';
 
+import Comments from '../components/Comments';
 import OverlayLoader from '../components/OverlayLoader';
-import CommentItem from '../components/CommentItem';
 
 function Article() {
   const navigate = useNavigate();
@@ -11,8 +11,7 @@ function Article() {
 
   const [article, setArticle] = useState(null);
   const [author, setAuthor] = useState('');
-  const [comments, setComments] = useState([]);
-  const [myComment, setMyComment] = useState('');
+  const [articleComments, setArticleComments] = useState([]);
   const [hasEditRights, setHasEditRights] = useState(false)
   const articleActionUrl = `${BLOGS_API}/${articleId}`;
 
@@ -28,7 +27,7 @@ function Article() {
         if (status === 'ok') {
           setArticle(res);
           setAuthor(author);
-          setComments(comments);
+          setArticleComments(comments);
           setHasEditRights(has_edit_rights);
         } else {
           navigate('/');
@@ -37,10 +36,6 @@ function Article() {
         navigate('/');
       });
   }, [navigate, articleActionUrl]);
-
-  const handleKeyDown = ({ keyCode }) => {
-    if (keyCode === ENTER_KEY_CODE) addComment();
-  };
 
   const deleteArticle = () => {
     fetch(articleActionUrl, {
@@ -61,26 +56,6 @@ function Article() {
         navigate('/');
       });
   }
-
-  const addComment = () => {
-    fetch(COMMENTS_API(articleId), {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem('auth_token')}`
-      },
-      body: JSON.stringify({
-        content: myComment,
-      }),
-    }).then(r => r.json())
-      .then(({ status, comment, error }) => {
-        if (status === 'ok') {
-          setMyComment('');
-          setComments([...comments, comment])
-        } else {
-        }
-      });
-  };
 
   if (!article) return <OverlayLoader />;
 
@@ -103,39 +78,7 @@ function Article() {
         </span>
       </div>
       <p>{article.content}</p>
-      <h4 className="border-bottom pb-3 mb-3 mt-5">Comments</h4>
-      <div className="input-group input-group-md mb-3">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Add your comment here..."
-          value={myComment}
-          onKeyDown={handleKeyDown}
-          onChange={(e) => setMyComment(e.target.value)}
-        />
-        <button
-          type="button"
-          className={`btn btn-primary ${myComment.length ? '' : 'disabled'}`}
-          onClick={addComment}
-        >
-          Add
-        </button>
-      </div>
-      <div className="mb-5">
-        {comments.length ? (comments.map(({ comment, author, has_edit_rights }) => (
-          <CommentItem
-            key={comment.id}
-            comment={comment}
-            author={author}
-            hasEditRights={has_edit_rights}
-            article={article}
-            comments={comments}
-            setComments={setComments}
-          />
-        ))) : (
-          <span>No Comments</span>
-        )}
-      </div>
+      <Comments commentsList={articleComments} embeddedParent={article} />
     </div>
   );
 }
