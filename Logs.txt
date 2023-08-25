@@ -42,3 +42,9 @@ Also checked permissions while performing actions on any Article
 
 24 August 2023:
 Integrate CRUD of Blogs on Front End
+
+25 August 2023:
+Add Basic Polymorphic Comments on Blog
+Integrate CRUD of it on Front End
+Add basic profile page
+Demoed the basic version of the app to Hitesh
