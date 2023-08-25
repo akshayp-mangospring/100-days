@@ -7,4 +7,5 @@ class User < ApplicationRecord
 
   has_many :todos
   has_many :articles
+  has_many :poly_comments
 end

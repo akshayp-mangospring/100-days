@@ -37,7 +37,7 @@ function Blog() {
       {
         articles.length ? (
           <ul className="list-unstyled">
-            {articles.map(({ article: { id, title, created_at }, author: { username } }) => {
+            {articles.map(({ article: { id, title, created_at }, author: { username }, comments }) => {
               return (
                 <li className="pb-4 mb-3 border-bottom" key={id}>
                   <NavLink to={`/articles/${id}`} className="d-block fs-2 mb-2 fw-bold">{title}</NavLink>
@@ -46,7 +46,7 @@ function Blog() {
                     <span className="mx-3">Published: {convertToReadableDate(created_at)}</span>
                     <span className="d-flex align-items-center mx-3">
                       <CommentIcon />
-                      <span className="ms-1">30 Comments</span>
+                      <span className="ms-1">{comments} {`${comments === 1 ? 'Comment' : 'Comments'} `}</span>
                     </span>
                   </div>
                 </li>

@@ -3,20 +3,34 @@ class ArticlesController < ApplicationController
   before_action :check_permission, only: [:edit, :delete]
 
   def index
-    articles = Article.all.reverse.map { |a|
+    articles = Article.all.reverse.map { |article|
       # Need to find a better way to achieve this
       # Seems like a very Hacky Way
-      article = { article: a }
-      author = { author: a.user.attributes.slice('id', 'email', 'username') }
-
-      article.merge(author)
+      {
+        article: article,
+        author: article.user.attributes.slice('id', 'email', 'username'),
+        comments: PolyComment.where(commentable_id: article.id, commentable_type: Article.to_s).count
+      }
     }
 
     render json: { articles: articles, status: :ok }
   end
 
   def show
-    render json: { article: @article, author: @article.user.attributes.slice('id', 'email', 'username'), has_edit_rights: has_permission?, status: :ok }
+    comments = PolyComment.where(commentable_id: @article.id, commentable_type: Article.to_s).map { |comment|
+      {
+        comment: comment,
+        author: comment.user.attributes.slice('id', 'email', 'username')
+      }
+    }
+
+    render json: {
+      article: @article,
+      author: @article.user.attributes.slice('id', 'email', 'username'),
+      comments: comments,
+      has_edit_rights: has_permission?,
+      status: :ok
+    }
   end
 
   def create
