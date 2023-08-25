@@ -10,6 +10,8 @@ function Article() {
 
   const [article, setArticle] = useState(null);
   const [author, setAuthor] = useState('');
+  const [comments, setComments] = useState([]);
+  const [myComment, setMyComment] = useState('');
   const [hasEditRights, setHasEditRights] = useState(false)
   const articleActionUrl = `${BLOGS_API}/${articleId}`;
 
@@ -21,10 +23,11 @@ function Article() {
       },
     })
       .then(r => r.json())
-      .then(({ status, article: res, has_edit_rights, author }) => {
+      .then(({ status, article: res, has_edit_rights, author, comments }) => {
         if (status === 'ok') {
           setArticle(res);
           setAuthor(author);
+          setComments(comments);
           setHasEditRights(has_edit_rights);
         } else {
           navigate('/');
@@ -43,7 +46,7 @@ function Article() {
       },
     })
       .then(r => r.json())
-      .then(({ status, article: res, has_edit_rights }) => {
+      .then(({ status }) => {
         if (status === 'ok') {
           navigate('/articles');
         } else {
@@ -75,6 +78,27 @@ function Article() {
         </span>
       </div>
       <p>{article.content}</p>
+      <h4 className="border-bottom pb-3 mb-3 mt-5">Comments</h4>
+      <div className="input-group input-group-md mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Add your comment here..."
+          value={myComment}
+          onChange={(e) => setMyComment(e.target.value)}
+        />
+        <button className={`btn btn-primary ${myComment.length ? '' : 'disabled'}`} type="button">Add</button>
+      </div>
+      <div>
+        {comments.length ? (comments.map(({ comment, author }) => (
+          <>
+            <span className="fw-medium me-3">{author.username}:</span>
+            <span>{comment.content}</span>
+          </>
+        ))) : (
+          <span>No Comments</span>
+        )}
+      </div>
     </div>
   );
 }
