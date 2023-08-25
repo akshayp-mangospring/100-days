@@ -6,11 +6,23 @@ import Todos from './pages/Todos';
 import Blogs from './pages/Blogs';
 import Article from './pages/Article';
 import EditArticle from './pages/EditArticle';
+import EditProfile from './pages/EditProfile';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Authenticate />,
+  },
+  {
+    path: '/profile',
+    element: <>
+      <Header />
+      <Outlet />
+    </>,
+    children: [{
+      path: '',
+      element: <EditProfile />,
+    }]
   },
   {
     path: '/todos',

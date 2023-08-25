@@ -19,3 +19,5 @@ export const convertToReadableDate = (dateStr) => {
 
   return `${day} ${month}, ${year}`;
 };
+
+export const getCurrentUser = () => JSON.parse(localStorage.getItem('current_user'));

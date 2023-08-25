@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { DEAD_LINK } from '../constants';
+import { getCurrentUser } from '../utils';
 
 function Header() {
   const navigate = useNavigate();
@@ -32,9 +33,12 @@ function Header() {
           </ul>
         </div>
         <div className="d-flex">
-          <span className="nav-link fw-bold text-white">
-            {JSON.parse(localStorage.getItem('current_user')).username}
-          </span>
+          <NavLink
+            to="/profile"
+            className="nav-link fw-bold text-white"
+          >
+            {getCurrentUser().username}
+          </NavLink>
           <a
             className="nav-link text-white ms-3"
             href={DEAD_LINK}
