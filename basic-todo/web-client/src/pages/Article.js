@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { BLOGS_API } from '../constants';
+import { BLOGS_API, COMMENTS_API } from '../constants';
 
 import OverlayLoader from '../components/OverlayLoader';
 
@@ -57,6 +57,26 @@ function Article() {
       });
   }
 
+  const addComment = () => {
+    fetch(COMMENTS_API(articleId), {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem('auth_token')}`
+      },
+      body: JSON.stringify({
+        content: myComment,
+      }),
+    }).then(r => r.json())
+      .then(({ status, comment, error }) => {
+        if (status === 'ok') {
+          setMyComment('');
+          setComments([...comments, comment])
+        } else {
+        }
+      });
+  };
+
   if (!article) return <OverlayLoader />;
 
   return (
@@ -87,14 +107,20 @@ function Article() {
           value={myComment}
           onChange={(e) => setMyComment(e.target.value)}
         />
-        <button className={`btn btn-primary ${myComment.length ? '' : 'disabled'}`} type="button">Add</button>
+        <button
+          type="button"
+          className={`btn btn-primary ${myComment.length ? '' : 'disabled'}`}
+          onClick={addComment}
+        >
+          Add
+        </button>
       </div>
-      <div>
+      <div className="mb-5">
         {comments.length ? (comments.map(({ comment, author }) => (
-          <>
+          <div key={comment.id}>
             <span className="fw-medium me-3">{author.username}:</span>
             <span>{comment.content}</span>
-          </>
+          </div>
         ))) : (
           <span>No Comments</span>
         )}

@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :delete]
+  before_action :set_article, only: [:show, :edit, :delete, :add_comment]
   before_action :check_permission, only: [:edit, :delete]
 
   def index
@@ -56,6 +56,19 @@ class ArticlesController < ApplicationController
       render json: { status: :ok, message: 'Article Deleted', article: nil }
     else
       render json: { status: :unprocessable_entity, message: 'There was an error in deleting the Article', article: nil }
+    end
+  end
+
+  def add_comment
+    @comment = PolyComment.new(content: params[:content], user_id: @current_user.id, commentable: @article)
+
+    if @comment.save
+      render json: { status: :ok, message: 'Comment saved successfully', comment: {
+        comment: @comment,
+        author: @comment.user.attributes.slice('id', 'email', 'username')
+      } }
+    else
+      render json: { status: :unprocessable_entity, message: 'There was an error saving the Comment', comment: nil }
     end
   end
 

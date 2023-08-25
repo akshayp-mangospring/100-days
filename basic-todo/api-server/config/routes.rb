@@ -23,4 +23,7 @@ Rails.application.routes.draw do
   get '/articles/:id', to: 'articles#show'
   put '/articles/:id', to: 'articles#edit'
   delete '/articles/:id', to: 'articles#delete'
+
+  # Comments Routes
+  post '/articles/:id/comment', to: 'articles#add_comment'
 end
