@@ -48,3 +48,10 @@ Add Basic Polymorphic Comments on Blog
 Integrate CRUD of it on Front End
 Add basic profile page
 Demoed the basic version of the app to Hitesh
+
+Major Success:
+I've finally completed the basic version of A Todo App along with Blog - End to End.
+The code is shit and there are many edge cases left out and no error handling has been done whatsoever. But still, I'm satisfied with the progress which I made during the past couple of days.
+I am very confident and aware that all the above listed shortcomings can be achieved by me. So, I am not putting up a lot of effort in keeping the codebase pristine or handling all the edge cases or making the best UI/UX possible.
+I would rather focus my energies on the new and complex topics which I need to learn in Databases and System Design.
+I'm gonna add more features in this app regardless so that it can be deployed and used by people.
