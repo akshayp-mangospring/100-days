@@ -20,7 +20,8 @@ class ArticlesController < ApplicationController
     comments = PolyComment.where(commentable_id: @article.id, commentable_type: Article.to_s).map { |comment|
       {
         comment: comment,
-        author: comment.user.attributes.slice('id', 'email', 'username')
+        author: comment.user.attributes.slice('id', 'email', 'username'),
+        has_edit_rights: has_permission?(comment)
       }
     }
 
@@ -28,7 +29,7 @@ class ArticlesController < ApplicationController
       article: @article,
       author: @article.user.attributes.slice('id', 'email', 'username'),
       comments: comments,
-      has_edit_rights: has_permission?,
+      has_edit_rights: has_permission?(@article),
       status: :ok
     }
   end
@@ -72,6 +73,21 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def delete_comment
+    @comment = PolyComment.where(id: params[:comment_id]).last
+
+    unless has_permission?(@comment)
+      render json: { status: :not_found, message: 'Comment Not found', comment: nil }
+      return
+    end
+
+    if @comment.destroy
+      render json: { status: :ok, message: 'Comment Deleted', comment: nil }
+    else
+      render json: { status: :unprocessable_entity, message: 'There was an error in deleting the Comment', comment: nil }
+    end
+  end
+
   private
 
   def set_article
@@ -83,12 +99,8 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def has_permission?
-    @current_user.id == @article.user_id
-  end
-
   def check_permission
-    unless has_permission?
+    unless has_permission?(@article)
       render json: { status: :not_found, message: 'Article Not found', article: nil }
       return
     end

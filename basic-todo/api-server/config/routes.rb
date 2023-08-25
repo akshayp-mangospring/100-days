@@ -26,4 +26,5 @@ Rails.application.routes.draw do
 
   # Comments Routes
   post '/articles/:id/comment', to: 'articles#add_comment'
+  delete '/articles/:id/comment', to: 'articles#delete_comment'
 end

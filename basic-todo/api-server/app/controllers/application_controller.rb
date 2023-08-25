@@ -14,6 +14,12 @@ class ApplicationController < ActionController::API
     JWT.decode(token, SECRET_KEY)
   end
 
+  protected
+
+  def has_permission?(inst_var)
+    @current_user.id == inst_var.user_id
+  end
+
   private
 
   def authenticate_request
