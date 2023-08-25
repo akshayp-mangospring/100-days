@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { BLOGS_API, COMMENTS_API, DEAD_LINK, ENTER_KEY_CODE } from '../constants';
-
-import Pen from '../components/icons/Pen';
-import Trash from '../components/icons/Trash';
+import { BLOGS_API, COMMENTS_API, ENTER_KEY_CODE } from '../constants';
 
 import OverlayLoader from '../components/OverlayLoader';
+import CommentItem from '../components/CommentItem';
 
 function Article() {
   const navigate = useNavigate();
@@ -84,25 +82,6 @@ function Article() {
       });
   };
 
-  const deleteComment = (id) => {
-    fetch(COMMENTS_API(articleId), {
-      method: 'DELETE',
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem('auth_token')}`
-      },
-      body: JSON.stringify({
-        comment_id: id,
-      }),
-    }).then(r => r.json())
-      .then(({ status, comment, error }) => {
-        if (status === 'ok') {
-          setComments(comments.filter(({ comment: { id: cId } }) => cId !== id));
-        } else {
-        }
-      });
-  };
-
   if (!article) return <OverlayLoader />;
 
   return (
@@ -144,20 +123,15 @@ function Article() {
       </div>
       <div className="mb-5">
         {comments.length ? (comments.map(({ comment, author, has_edit_rights }) => (
-          <div key={comment.id} className="mb-1 d-flex">
-            <span className="fw-medium me-3">{author.username}:</span>
-            <span className="me-auto">{comment.content}</span>
-            {has_edit_rights && (
-              <div className="d-flex align-items-center">
-                <a href={DEAD_LINK} className="d-flex align-items-center text-primary">
-                  <Pen />
-                </a>
-                <a href={DEAD_LINK} onClick={() => deleteComment(comment.id)} className="d-flex align-items-center text-danger ms-3">
-                  <Trash />
-                </a>
-              </div>
-            )}
-          </div>
+          <CommentItem
+            key={comment.id}
+            comment={comment}
+            author={author}
+            hasEditRights={has_edit_rights}
+            article={article}
+            comments={comments}
+            setComments={setComments}
+          />
         ))) : (
           <span>No Comments</span>
         )}
