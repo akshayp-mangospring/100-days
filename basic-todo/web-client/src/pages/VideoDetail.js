@@ -62,23 +62,38 @@ function VideoDetail() {
 
   return (
     <div className="container">
-      <div className="d-flex justify-content-between align-items-center my-3">
-        <h1 className="my-0">{video.title}</h1>
-        {
-          hasEditRights && (
-            <div>
-              <NavLink to={`/videos/${videoId}/edit`} className="btn btn-primary">Edit</NavLink>
-              <button className="btn btn-danger mx-2" type="button" onClick={deleteVideo}>Delete</button>
-            </div>
-          )
-        }
+      <div className="card">
+        <iframe
+          width="100%"
+          height="743"
+          src={`${getYoutubeEmbedUrl(video.url)}?controls=0`}
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+        <div className="card-body">
+          <div className="d-flex justify-content-between align-items-center mt-2 mb-1">
+            <h2 className="my-0">{video.title}</h2>
+            {
+              hasEditRights && (
+                <div>
+                  <NavLink to={`/videos/${videoId}/edit`} className="btn btn-primary">Edit</NavLink>
+                  <button className="btn btn-danger mx-2" type="button" onClick={deleteVideo}>Delete</button>
+                </div>
+              )
+            }
+          </div>
+          <div className="mb-3">
+            <span>
+              By: <span className="fw-medium">{videoOwner.username}</span>
+            </span>
+          </div>
+          <div>
+            <h5 className="border-bottom pb-2 mb-2">Description</h5>
+            <p>{video.description}</p>
+          </div>
+        </div>
       </div>
-      <div className="border-bottom pb-3 my-3">
-        <span className="me-2">
-          By: <span className="fw-medium">{videoOwner.username}</span>
-        </span>
-      </div>
-      <iframe width="100%" height="400" src={`${getYoutubeEmbedUrl(video.url)}?controls=0`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       <Comments commentsList={videoComments} embeddedParent={video} apiEndPoint={VIDEO_COMMENTS_API} />
     </div>
   );
