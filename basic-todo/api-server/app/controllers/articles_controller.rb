@@ -83,9 +83,9 @@ class ArticlesController < ApplicationController
     end
 
     if @comment.update(content: params[:content])
-      render json: { status: :ok, message: 'Comment Deleted', comment: @comment }
+      render json: { status: :ok, message: 'Comment Edited', comment: @comment }
     else
-      render json: { status: :unprocessable_entity, message: 'There was an error in deleting the Comment', comment: nil }
+      render json: { status: :unprocessable_entity, message: 'There was an error in editing the Comment', comment: nil }
     end
   end
 

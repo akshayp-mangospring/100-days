@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -24,8 +25,20 @@ Rails.application.routes.draw do
   put '/articles/:id', to: 'articles#edit'
   delete '/articles/:id', to: 'articles#delete'
 
-  # Comments Routes
+  # Article Comments Routes
   post '/articles/:id/comment', to: 'articles#add_comment'
   delete '/articles/:id/comment', to: 'articles#delete_comment'
   put '/articles/:id/comment', to: 'articles#edit_comment'
+
+  # Videos Routes
+  get '/videos' , to: 'videos#index'
+  post '/videos' , to: 'videos#create'
+  get '/videos/:id' , to: 'videos#show'
+  put '/videos/:id' , to: 'videos#edit'
+  delete '/videos/:id' , to: 'videos#delete'
+
+  # Video Comments Routes
+  post '/videos/:id/comment', to: 'videos#add_comment'
+  delete '/videos/:id/comment', to: 'videos#delete_comment'
+  put '/videos/:id/comment', to: 'videos#edit_comment'
 end
