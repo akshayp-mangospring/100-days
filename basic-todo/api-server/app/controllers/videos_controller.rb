@@ -2,6 +2,8 @@ class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :delete, :add_comment]
   before_action :check_permission, only: [:edit, :delete]
 
+  after_action :destroy_dependent_comments, only: [:delete]
+
   def index
     videos = Video.all.reverse.map { |video|
       # Need to find a better way to achieve this

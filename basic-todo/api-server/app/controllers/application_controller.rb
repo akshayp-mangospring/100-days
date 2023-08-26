@@ -20,6 +20,12 @@ class ApplicationController < ActionController::API
     @current_user.id == inst_var.user_id
   end
 
+  def destroy_dependent_comments
+    dependent_comments = PolyComment.where(commentable_type: controller_name.classify, commentable_id: params[:id])
+
+    dependent_comments.destroy_all
+  end
+
   private
 
   def authenticate_request

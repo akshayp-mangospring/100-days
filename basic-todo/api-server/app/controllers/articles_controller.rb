@@ -2,6 +2,8 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :delete, :add_comment]
   before_action :check_permission, only: [:edit, :delete]
 
+  after_action :destroy_dependent_comments, only: [:delete]
+
   def index
     articles = Article.all.reverse.map { |article|
       # Need to find a better way to achieve this
