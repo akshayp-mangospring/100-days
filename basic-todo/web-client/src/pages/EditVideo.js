@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
+import { getYoutubeEmbedUrl } from '../utils';
 import { VIDEOS_API } from '../constants';
 
 import OverlayLoader from '../components/OverlayLoader';
@@ -63,6 +64,11 @@ function EditVideo() {
       });
   };
 
+  const isYoutubeVideo = () => {
+    const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    return url.match(regExp);
+  }
+
   if (editVideo && !video) return <OverlayLoader />;
 
   return (
@@ -72,16 +78,25 @@ function EditVideo() {
           <label className="form-label fs-4">Title</label>
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="form-control" placeholder="Enter title here..." />
         </div>
-        <div className="mb-3">
-          <label className="form-label fs-4">Link</label>
+        <label className="form-label fs-4">Link</label>
+        <div className="input-group input-group-md mb-3">
           <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} className="form-control" placeholder="Enter video link here..." />
+          <button type="button" className={`btn btn-primary ${isYoutubeVideo() ? '' : 'disabled'}`}>Fetch</button>
         </div>
+        {
+          isYoutubeVideo() && <div className="mb-3">
+            <label className="form-label fs-4">Preview</label>
+            <div>
+              <iframe title="new-video" src={getYoutubeEmbedUrl(url)}></iframe>
+            </div>
+          </div>
+        }
         <div>
           <label className="form-label fs-4">Description</label>
-          <textarea className="form-control" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Enter description here..." rows={20}>{description}</textarea>
+          <textarea className="form-control" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Enter description here..." rows={16}>{description}</textarea>
         </div>
       </div>
-      <button className="btn btn-primary" type="button" onClick={saveVideo}>Save</button>
+      <button className="btn btn-primary mb-5" type="button" onClick={saveVideo}>Save</button>
     </div>
   );
 }

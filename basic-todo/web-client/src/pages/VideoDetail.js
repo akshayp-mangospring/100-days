@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { VIDEOS_API, VIDEO_COMMENTS_API } from '../constants';
+import { getYoutubeEmbedUrl } from '../utils';
 
 import Comments from '../components/Comments';
 import OverlayLoader from '../components/OverlayLoader';
@@ -11,7 +12,6 @@ function VideoDetail() {
 
   const [video, setVideo] = useState(null);
   const [videoOwner, setVideoOwner] = useState('');
-  const [videoUrl, setVideoUrl] = useState('');
   const [videoComments, setVideoComments] = useState([]);
   const [hasEditRights, setHasEditRights] = useState(false)
   const videoActionUrl = `${VIDEOS_API}/${videoId}`;
@@ -28,7 +28,6 @@ function VideoDetail() {
         if (status === 'ok') {
           setVideo(res);
           setVideoOwner(owner);
-          setVideoUrl(url);
           setVideoComments(comments);
           setHasEditRights(has_edit_rights);
         } else {
@@ -79,7 +78,7 @@ function VideoDetail() {
           By: <span className="fw-medium">{videoOwner.username}</span>
         </span>
       </div>
-      <p>{video.url}</p>
+      <iframe width="100%" height="400" src={`${getYoutubeEmbedUrl(video.url)}?controls=0`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       <Comments commentsList={videoComments} embeddedParent={video} apiEndPoint={VIDEO_COMMENTS_API} />
     </div>
   );

@@ -21,3 +21,11 @@ export const convertToReadableDate = (dateStr) => {
 };
 
 export const getCurrentUser = () => JSON.parse(localStorage.getItem('current_user'));
+
+export const getYoutubeVideoId = (url) => {
+  const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[7].length === 11) ? match[7] : false;
+};
+
+export const getYoutubeEmbedUrl = u => u.includes('watch?v=') ? `https://www.youtube.com/embed/${getYoutubeVideoId(u)}` : u;
