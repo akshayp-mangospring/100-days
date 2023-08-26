@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { COMMENTS_API, DEAD_LINK, ENTER_KEY_CODE } from '../constants';
+import { DEAD_LINK, ENTER_KEY_CODE } from '../constants';
 
 import Pen from './icons/Pen';
 import Trash from './icons/Trash';
 import Tick from './icons/Tick';
 import Close from './icons/Close';
 
-function Comment({ comment, author, hasEditRights, embeddedParent, setComments, comments }) {
+function Comment({ comment, author, hasEditRights, embeddedParent, setComments, comments, apiEndPoint }) {
   const parentId = embeddedParent.id;
   const commentId = comment.id;
   const inputRef = useRef(null);
@@ -24,7 +24,7 @@ function Comment({ comment, author, hasEditRights, embeddedParent, setComments, 
   };
 
   const deleteComment = () => {
-    fetch(COMMENTS_API(parentId), {
+    fetch(apiEndPoint(parentId), {
       method: 'DELETE',
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ function Comment({ comment, author, hasEditRights, embeddedParent, setComments, 
   };
 
   const editComment = () => {
-    fetch(COMMENTS_API(parentId), {
+    fetch(apiEndPoint(parentId), {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json",

@@ -61,7 +61,7 @@ class VideosController < ApplicationController
   end
 
   def add_comment
-    @comment = PolyComment.new(description: params[:description], user_id: @current_user.id, commentable: @video)
+    @comment = PolyComment.new(content: params[:content], user_id: @current_user.id, commentable: @video)
 
     if @comment.save
       render json: { status: :ok, message: 'Comment saved successfully', comment: {
@@ -82,7 +82,7 @@ class VideosController < ApplicationController
       return
     end
 
-    if @comment.update(description: params[:description])
+    if @comment.update(content: params[:content])
       render json: { status: :ok, message: 'Comment Edited', comment: @comment }
     else
       render json: { status: :unprocessable_entity, message: 'There was an error in editing the Comment', comment: nil }

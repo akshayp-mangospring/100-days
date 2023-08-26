@@ -24,6 +24,14 @@ function Header() {
           <ul className="navbar-nav">
             <li className="nav-item">
               <NavLink
+                to="/videos"
+                className="nav-link"
+              >
+                Videos
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
                 to="/todos"
                 className="nav-link"
               >

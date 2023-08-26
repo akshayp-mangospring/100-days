@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { COMMENTS_API, ENTER_KEY_CODE } from '../constants';
+import { ENTER_KEY_CODE } from '../constants';
 
 import CommentItem from './CommentItem';
 
-function Comments({ commentsList, embeddedParent }) {
+function Comments({ commentsList, embeddedParent, apiEndPoint }) {
   const [myComment, setMyComment] = useState('');
   const [comments, setComments] = useState(commentsList);
 
   const addComment = () => {
-    fetch(COMMENTS_API(embeddedParent.id), {
+    fetch(apiEndPoint(embeddedParent.id), {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -57,6 +57,7 @@ function Comments({ commentsList, embeddedParent }) {
             key={comment.id}
             comment={comment}
             author={author}
+            apiEndPoint={apiEndPoint}
             hasEditRights={has_edit_rights}
             embeddedParent={embeddedParent}
             comments={comments}
