@@ -55,3 +55,12 @@ The code is shit and there are many edge cases left out and no error handling ha
 I am very confident and aware that all the above listed shortcomings can be achieved by me. So, I am not putting up a lot of effort in keeping the codebase pristine or handling all the edge cases or making the best UI/UX possible.
 I would rather focus my energies on the new and complex topics which I need to learn in Databases and System Design.
 I'm gonna add more features in this app regardless so that it can be deployed and used by people.
+
+26 August 2023:
+Add capability to add videos in the App.
+Reuse the Comments component between Blogs and Videos.
+Add capability to Embed YouTube videos in App.
+
+27 August 2023:
+Delete dependent comments of any Video or Blog if it's deleted.
+Add the UI of Replies on Comments in the app.
