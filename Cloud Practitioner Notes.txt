@@ -1,0 +1,23 @@
+Cloud Practitioner(CCP):
+This is my first and baby step in Cloud Computing. I'm gonna rule the Cloud Computing field myself.
+I'm gonna require just 8 hours of focused study to clear up CCP. A week max to clear it out.
+
+Exam structure:
+  The weightage:
+    Cloud Concepts - 28%
+    Security - 24%
+    Technology - 36%
+    Billing and Pricing - 12%
+
+  Question Types:
+    Multiple Choice - 1 out of 4 will be correct.
+    Multiple Response - 2 out of 5 OR 3 out of 6 will be correct.
+
+The basic topics to be covered are:
+  Overview of Amazon Web Services
+  Architecting for the Cloud: AWS Best practices
+  How AWS Pricing works
+  Cost Management in the AWS Cloud
+
+What are Whitepapers?
+I think, it's like info.

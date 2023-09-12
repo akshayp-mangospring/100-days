@@ -64,3 +64,10 @@ Add capability to Embed YouTube videos in App.
 27 August 2023:
 Delete dependent comments of any Video or Blog if it's deleted.
 Add the UI of Replies on Comments in the app.
+
+12 September 2023:
+Started study on AWS.
+I'm gonna first do the Cloud Practitioner(CCP) which is the foundational course study.
+Many of the guys suggested that I should avoid doing it because it's very basic, but I know I wanted to start from the ground up just to gain confidence and move on quickly in the further studies if I have a base clear.
+It's mostly obtained by people in Sales and Management. So, I'm not gonna obtain this certificate, rather I'm directly gonna target for the Solutions Architect Associate exam.
+I'm gonna give the AWS Solutions Architect Associate Exam in the coming months. Probably November or somewhere around it.
