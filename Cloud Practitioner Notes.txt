@@ -1,13 +1,36 @@
 Cloud Practitioner(CCP):
 This is my first and baby step in Cloud Computing. I'm gonna rule the Cloud Computing field myself.
+I should be able to work around at least the basics of the AWS console after getting through this.
 I'm gonna require just 8 hours of focused study to clear up CCP. A week max to clear it out.
+Take any exam of AWS in a test center and not from the home, it's beneficial.
+
+Exam Details:
+  $100 USD
+  90 minutes
+  65 Questions
+  70% Passing score is needed
+  Valid fo 3 years
 
 Exam structure:
   The weightage:
     Cloud Concepts - 28%
+      Define the AWS and its value proposition
+      Identify the aspects of AWS Cloud economics
+      List the different Cloud Archutecture Design Principles
     Security - 24%
-    Technology - 36%
+      Define the AWS Shared Responsibility Model
+      Define the AWS Cloud Security and compliance concepts
+      Identify AWS Access Management capabilities
+      Identify resources for security support
+    Technology - 36% - This is very important for me
+      Define methods for deploying and operating in the AWS Cloud
+      Define the AWS Global infrastructure
+      Identify the core AWS Services
+      Identify resources for Technology support
     Billing and Pricing - 12%
+      Compare and contrast the various pricing models for AWS
+      Recognize the various account structures in relation to AWS billing and pricing
+      Identify resources available for billing support
 
   Question Types:
     Multiple Choice - 1 out of 4 will be correct.
@@ -20,4 +43,81 @@ The basic topics to be covered are:
   Cost Management in the AWS Cloud
 
 What are Whitepapers?
-I think, it's like info.
+  Whitepapers from AWS are the official reference manuals for AWS exams. The important one includes:
+    Overview of AWS
+    Architecting for the cloud - AWS best practices
+  I'm gonna read both of them after the video course, to get a solid base clear
+
+What is Cloud Computing?
+In a single sentence is: To move yourself from Local to Remote.
+It's the practice of using a network or remote servers hosted on the Internet to store, manage and process data than a local server or a local computer.
+
+On Premise:
+You own the servers
+You pay or rent for the hardware
+You manage everything: Just like Facebook, Google, Amazon and Microfosft does.
+
+Fun fact:
+Facebook has at least 18 Data Centers which keeps track of the massive data that they have and operate upon. The have in multiple regions in the US and also on multiple continents.
+
+Cloud Providers:
+  Someone else owns the servers.
+  We are just responsible for CONFIGURING our cloud services and code, someone else makes sure that the hardware is available all the time and doesn't crash.
+  Major Cloud providers:
+    AWS
+    GCP
+    Azure
+  All of them have specific certifications to operate in on an associate level to work as a Cloud Engineer.
+  The core responsibility of a Cloud Engineer is to acquire the fundamental skills to deploy and maintain cloud projects.
+
+Advantages of Cloud Computer Providers:
+  There's no question of taking care of the hardware. It's done by them.
+  We pay for what we use. So, we can either increase or decrease the amount of resources as and when needed.
+  We can deploy our app in multiple regions in just a few clicks and configs.
+
+Types of Cloud Computing:
+  Software as a Sevice - SaaS - For Customers
+    This just includes a Software product that is run and managed by a company. We just need to use the software product as a service.
+    Just like Google has GMail, Facebook has Instagram, etc.
+
+  Platform as a Sevice - PaaS - For Developers
+    Removes the need to manage and organize your own hardware and deploy it on someone else's hardware.
+    Just like GitHub Pages, Netlify, Heroku.
+    All of the above provide a platform for the developers to deploy theur own applications upon without worrying about hardware or networking.
+
+  Infrastructure as a Sevice - IaaS - For Admins
+    This is the basic building block. We get the access to all the Networking features, Computers and Data Storage space.
+    So, we can specify and configure all the resources required for our app to run upon.
+    Just like AWS, Azure and GCP.
+
+Cloud Computing Deployment models:
+  On Cloud:
+    The full deployment of the App is done on the Cloud Provider like AWS.
+    The data is also stored there in a secure manner by the Cloud Provider.
+
+    Eg: Basecamp, MangoApps
+
+  On Premise:
+    The full deployment of the App is done on the independent hardware.
+    Although, the data might be secure on a Cloud Provider, but still some people or oragnizations might prefer an On-Premise deployment.
+    It's mostly due to political reasons, so, super sensitive data like Hospitals or Government sector doesn't want to keep their data in the hands of a private Company.
+    So, they need their dpeloyments to be done On-Premise.
+
+    Eg: Facebook, Government data
+
+  On Hybrid:
+    The parts of deployment of the App are done on the Cloud Provider like AWS and part of it which might have sensitive info is done On-Premise.
+    They interoperate between the systems. There might also be due to historical reasons.
+
+    Eg: Banking companies
+
+AWS Global Infra:
+  Terminology:
+    Regions - Physical location in the world with multiple Availablility Zones
+    Availablility Zones - One or more discrete data centers
+    Edge Locations - Data Center owned by a trusted partner of AWS
+
+
+  AWS has 69 Availablility Zones & 22 Geographic Regions. One of the Region is in India.
+
+  In short: A Region consists of multiple Availablility Zones and an Availablility Zone consists of multiple data centers(Edge Locations).
