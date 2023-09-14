@@ -1,3 +1,11 @@
+Journey of a Solutions Architect in AWS:
+All the bellow dates are of achieving the certification are real:
+  August 2020 - Cloud Practitioner - 3 weeks to prepare
+  Sept 2020 - SA Associate - 4 weeks to prepare
+  Nov 2020 - Developer Associate - 4 weeks to prepare
+  Dec 2020 - SysOps Admin Associate - 4 weeks to prepare
+  Dec 2021 - SA Professional
+
 Cloud Practitioner(CCP):
 This is my first and baby step in Cloud Computing. I'm gonna rule the Cloud Computing field myself.
 I should be able to work around at least the basics of the AWS console after getting through this.
@@ -113,11 +121,30 @@ Cloud Computing Deployment models:
 
 AWS Global Infra:
   Terminology:
-    Regions - Physical location in the world with multiple Availablility Zones
-    Availablility Zones - One or more discrete data centers
+    Regions - Physical location in the world with multiple Availability Zones
+    Availability Zones - One or more discrete data centers
     Edge Locations - Data Center owned by a trusted partner of AWS
 
+  AWS has 69 Availability Zones & 22 Geographic Regions. One of the Region is in India.
 
-  AWS has 69 Availablility Zones & 22 Geographic Regions. One of the Region is in India.
+  In short: A Region consists of multiple Availability Zones and an Availability Zone consists of multiple data centers(Edge Locations).
 
-  In short: A Region consists of multiple Availablility Zones and an Availablility Zone consists of multiple data centers(Edge Locations).
+  Regions:
+    US-East - North Virginia region is where we get to see all of the billing information.
+    Not all regions have all features available everywhere. US-East - North Virginia has got all of the features available. It's their largest Region
+    Most companies have to run on more than 3 AZs.
+
+  Availability Zones(AZ):
+    Each AZ is represented by a Region code followed by a letter identifier
+    eg: us-east-1a => North Virginia's first data center.
+
+    Multi AZ - Distributing your instances over multiple AZs allows for more fault tolerance.
+
+  Edge Locations:
+    Get data or Upload data fast to AWS.
+    These locations serve requests for Cloudfront and Route 53. Requests going to each of these services will be routed to the nearest Data Center(Edge Location).
+
+AWS GovCloud:
+  This is accessible only in the US and is operational only in the US.
+  This was created so that the Government can store it's sensitive data on this infra.
+  This infra has got a lot of regulations and security to get access to. That too should be just on US soil, nowhere else.
